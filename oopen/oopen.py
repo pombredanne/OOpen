@@ -6,6 +6,7 @@ import hashlib
 from datetime import datetime
 from __builtin__ import file
 
+__all__ = ['OOpen']
 
 class OOpen(file):
     '''Object-Oriented file and path handling.'''
@@ -258,4 +259,4 @@ class OOpen(file):
     def touch(self):
         pass
 
-__all__ = ['OOpen']
+
