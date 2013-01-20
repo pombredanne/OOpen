@@ -1,9 +1,9 @@
+
 OOpen
 =====
+*Object-Oriented file and path handling.*
 
-***************************************
-Object-Oriented file and path handling.
-***************************************
+
 
 The std lib file and path options aren't very pythonic.
 
