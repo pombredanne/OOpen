@@ -1,19 +1,20 @@
 from setuptools import setup, find_packages
-import sys
+import oopen
 import os
+import sys
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     sys.exit()
 
-version = open('VERSION', 'r').read()
 
 setup(name='oopen',
-      version=version,
+      version=oopen.__version__,
       description="Object-Oriented File and Path manipulation",
       long_description=open('README.rst', 'r').read() + "\n\n" +
-                       open('HISTORY.rst', 'r').read() + "\n\n" +
-                       open('LICENSE').read(),
+      open('INSTALL.rst', 'r').read() + "\n\n" +
+      open('HISTORY.rst', 'r').read() + "\n\n" +
+      open('LICENSE').read(),
       keywords='file path oo',
       author='Andrew Hekman',
       author_email='ajhekman@gmail.com',

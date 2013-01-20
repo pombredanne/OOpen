@@ -1,4 +1,3 @@
-=====
 OOpen
 =====
 
@@ -6,12 +5,15 @@ OOpen
 Object-Oriented file and path handling.
 ***************************************
 
-The std lib file and path options aren't very pythonic. 
+The std lib file and path options aren't very pythonic.
+
 I should be able to perform basic tasks directly on the file.
 
-**Status: In development.** 
+**Status: In development.**
 
 License: MIT
+
+Uses `Semantic Versioning <http://semver.org/>`_
 
 Example usage:
 ==============
