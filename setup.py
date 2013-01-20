@@ -11,10 +11,10 @@ if sys.argv[-1] == 'publish':
 setup(name='oopen',
       version=oopen.__version__,
       description="Object-Oriented File and Path manipulation",
-      long_description=open('README.rst', 'r').read() + "\n\n" +
+      long_description=open('INFO.rst', 'r').read() + "\n\n" +
       open('INSTALL.rst', 'r').read() + "\n\n" +
       open('HISTORY.rst', 'r').read() + "\n\n" +
-      open('LICENSE').read(),
+      open('LICENSE.rst', 'r').read(),
       keywords='file path oo',
       author='Andrew Hekman',
       author_email='ajhekman@gmail.com',
