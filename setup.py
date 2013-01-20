@@ -1,17 +1,19 @@
 from setuptools import setup, find_packages
-import sys, os
+import sys
+import os
 
-version = open('VERSION','r').read(-1)
+if sys.argv[-1] == 'publish':
+    os.system('python setup.py sdist upload')
+    sys.exit()
+
+version = open('VERSION', 'r').read()
 
 setup(name='oopen',
       version=version,
       description="Object-Oriented File and Path manipulation",
-      long_description=open('README.rst','r').read(-1),
-      classifiers="""Development Status :: 3 - Alpha
-Intended Audience :: Developers
-Intended Audience :: System Administrators
-License :: OSI Approved :: MIT License
-Topic :: Software Development :: Libraries :: Python Modules""".split('\n'), # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+      long_description=open('README.rst', 'r').read() + "\n\n" +
+                       open('HISTORY.rst', 'r').read() + "\n\n" +
+                       open('LICENSE').read(),
       keywords='file path oo',
       author='Andrew Hekman',
       author_email='ajhekman@gmail.com',
@@ -26,4 +28,10 @@ Topic :: Software Development :: Libraries :: Python Modules""".split('\n'), # G
       entry_points="""
       # -*- Entry points: -*-
       """,
+      classifiers="""Development Status :: 3 - Alpha
+Intended Audience :: Developers
+Intended Audience :: System Administrators
+License :: OSI Approved :: MIT License
+Topic :: Software Development :: Libraries :: Python Modules""".split('\n'),  # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+
       )
