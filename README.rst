@@ -45,7 +45,7 @@ Install
 -------
 
 with pip (recommended):
-^^^^^^^^^^^^^^^^^^^^^^^
++++++++++++++++++++++++
 *Optional* use `virtualenv <http://pypi.python.org/pypi/virtualenv>`_:
 
 - ``virtualenv venv``
@@ -55,13 +55,13 @@ with pip (recommended):
 
 
 with easy_install:
-^^^^^^^^^^^^^^^^^^
+++++++++++++++++++
 
 ``sudo easy_install oopen``
 
 
 from source:
-^^^^^^^^^^^^
+++++++++++++
 *update version numbers where appropriate*
 
 `Download latest release from PyPI <http://pypi.python.org/pypi/oopen/>`_
@@ -73,7 +73,7 @@ from source:
 ``[sudo] python setup.py install``
 
 from git:
-^^^^^^^^^
++++++++++
 *Useful for specifying an exact commit, or for local development.*
 
 ``pip install-e git+https://github.com/ajhekman/OOpen#egg=oopen``
