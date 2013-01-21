@@ -2,3 +2,5 @@ build/
 dist/
 *.py[co]
 /*.egg-info/
+venv/
+*~
