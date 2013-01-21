@@ -67,6 +67,7 @@ def update_version():
     new_hist = header + entry_header + retdata + "\n" + hist.read()
     hist.close()
     hist = open('HISTORY.rst', 'w').write(new_hist)
+    return version
 
 
 @task
@@ -108,26 +109,17 @@ def new_release():
         print 'Please commit your code and run again.'
         return
 
-    readme()
-    ans = local('git status --porcelain')
-    if ans != "":
-        ans2 = prompt('Your readme has been updated and needs to be committed. Ok to commit?', default='no', validate=r'(yes|no)')
-        if ans2 == 'no':
-            print 'Please commit your code and run again.'
-            return
-        else:
-            local('git add README.rst')
-            local('git commit -m "Updating README.rst"')
-
     ans = prompt('Do you want to increment the version?', default='no', validate=r'(yes|no)')
     if ans == 'yes':
-        update_version()
+        version = update_version()
+        readme()
         local('git add oopen/__init__.py')
-        local('git commit -m "Incrementing version to {}"'.format(oopen.__version__))
+        local('git add README.rst')
+        local('git commit -m "Incrementing version to {}"'.format(version))
 
     ans = prompt('Do you want to tag this version?', default='no', validate=r'(yes|no)')
     if ans == 'yes':
-        local('git tag -s {}'.format(oopen.__version__))
+        local('git tag -s {}'.format(version))
 
     ans = prompt('Do you want to push to github?', default='no', validate=r'(yes|no)')
     if ans == 'yes':
