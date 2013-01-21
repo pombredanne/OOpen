@@ -5,6 +5,15 @@
 History
 -------
 
+0.1.2 (2013-01-20)
+++++++++++++++++++
+
+- modified .gitignore
+- Improvements to fabfile
+- Made reSt modifications for github
+- README.rst is now a compliation of INFO,INSTALL,HISTORY,LICENSE
+- Further packaging and install improvements
+
 0.1.1 (2013-01-20)
 ++++++++++++++++++
 
