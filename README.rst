@@ -96,6 +96,12 @@ Uninstall:
 History
 -------
 
+0.1.3 (2013-01-20)
+++++++++++++++++++
+
+- Added publishing tasks to fabfile
+
+
 0.1.2 (2013-01-20)
 ++++++++++++++++++
 
