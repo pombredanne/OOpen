@@ -60,6 +60,53 @@ def readme():
 def publish():
     if not ensure_in_sync():
         print red('Your git tag does not match your version (or working tree)')
-        return
+        return False
     local('python setup.py register')
     local('python setup.py publish')
+
+
+@task
+def push():
+    if not ensure_in_sync():
+        print red('Your git tag does not match your version (or working tree)')
+        return False
+    local('git push')
+    local('git push --tags')
+
+
+@task
+def new_release():
+
+    ans = local('git status --porcelain')
+    if ans == '':
+        print 'Please commit your code and run again.'
+        return
+
+    readme()
+    ans = local('git status --porcelain')
+    if ans != "":
+        ans2 = prompt('Your readme has been updated and needs to be committed. Ok to commit?', default='no', validate=r'(yes|no)')
+        if ans2 == 'no':
+            print 'Please commit your code and run again.'
+            return
+        else:
+            local('git add README.rst')
+            local('git commit -m "Updating README.rst"')
+
+    ans = prompt('Do you want to increment the version?', default='no', validate=r'(yes|no)')
+    if ans == 'yes':
+        update_version()
+        local('git add oopen/__init__.py')
+        local('git commit -m "Incrementing version to {}"'.format(oopen.__version__))
+
+    ans = prompt('Do you want to tag this version?', default='no', validate=r'(yes|no)')
+    if ans == 'yes':
+        local('git tag -s {}'.format(oopen.__version__))
+
+    ans = prompt('Do you want to push to github?', default='no', validate=r'(yes|no)')
+    if ans == 'yes':
+        push()
+
+    ans = prompt('Do you want to publish to PYPI?', default='no', validate=r'(yes|no)')
+    if ans == 'yes':
+        publish()
