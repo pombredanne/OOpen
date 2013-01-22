@@ -34,6 +34,7 @@ def update_version():
         v_selection += 1
         version[v_selection] = 0
 
+    #Make Version human readable str
     version = ".".join([str(n) for n in version])
     accept = prompt(
         "\nPlease confirm; do you want to update the version \nfrom {0}\nto   {1}\nyes/[no]: ".format(blue(current_version), red(version)))
@@ -48,12 +49,11 @@ def update_version():
     subproc = subprocess.Popen(['subl', '-n', '-w', '-'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     retdata = subproc.communicate(change_log)[0]
 
-    # subproc.stdin.write(change_log)
-    # retdata = subproc.stdout.read()
     hist = open('HISTORY.rst', 'r')
     line = ''
     header = ''
-    #Set the position of the file
+
+    #Read the header information
     while line != 'History\n':
         line = hist.readline()
         header += line
@@ -76,6 +76,8 @@ def clean():
         local('rm -rf dist/')
     if os.path.isdir('oopen.egg-info'):
         local('rm -rf oopen.egg-info')
+    os.system('rm -r *~')
+    os.system("rm `find . -type f -name *.pyc -name *.pyo |xargs`")
 
 
 @task
@@ -112,6 +114,7 @@ def new_release():
     ans = prompt('Do you want to increment the version?', default='no', validate=r'(yes|no)')
     if ans == 'yes':
         version = update_version()
+        local('git add HISTORY.rst')
         readme()
         local('git add oopen/__init__.py')
         local('git add README.rst')
