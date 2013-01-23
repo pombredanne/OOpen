@@ -8,6 +8,7 @@ from __builtin__ import file
 
 __all__ = ['OOpen']
 
+
 class OOpen(file):
     '''Object-Oriented file and path handling.'''
 
@@ -20,13 +21,9 @@ class OOpen(file):
     def __move(self, value):
         "move the file, repopen file handle"
         #todo: Check if dir exists, & we have rights
-        pos = self.tell()
-        self.close()
         new = os.path.abspath(value)
-        os.rename(self.abspath, new)
+        os.rename(self.path, new)
         self.path = new
-        file.__init__(self, self.path, self._mode)
-        self.seek(pos)
         self.is_modified = True
 
     def write(self, str_):
@@ -239,10 +236,30 @@ class OOpen(file):
         def fset(self, value):
             os.rename(self.abspath,
                       os.path.join(self.location, value))
-            self.path = os.path.abspath(os.path.join(self.location, value))
+            self.__move(os.path.abspath(os.path.join(self.location, value)))
 
         return locals()
     name = property(**name())
+
+    def extension():
+        doc = "The extension property."
+
+        def fget(self):
+            extension = os.path.splitext(self.name)[1]
+            without_period = extension[1:]
+            return without_period
+
+        def fset(self, value):
+            base = os.path.splitext(self.path)[0]
+            ext = value
+            new_path = base + '.' + ext
+
+            self.__move(new_path)
+
+        def fdel(self):
+            self.__move(self.path[0])
+        return locals()
+    extension = property(**extension())
 
     def delete(self):
         pass
@@ -258,5 +275,3 @@ class OOpen(file):
 
     def touch(self):
         pass
-
-
