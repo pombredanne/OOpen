@@ -8,6 +8,8 @@ import os
 import re
 import subprocess
 import datetime
+
+
 local = partial(local, capture=True)
 EDITOR = 'subl'
 
@@ -131,3 +133,37 @@ def new_release():
     ans = prompt('Do you want to publish to PYPI?', default='no', validate=r'(yes|no)')
     if ans == 'yes':
         publish()
+
+
+def related_projects():
+    # ^[a-zA-Z0-9.-]* matches repo name
+    # \ -\ .*$ matches description
+
+    raw_list = subprocess.check_output(dedent('''\
+        pip search path | \
+        grep -i object | \
+        grep -v oopen | grep -v descartes | \
+        sort'''), shell=True)
+
+    description = re.findall(r'(\ -\ .*$)', raw_list, re.M)
+    moniker = re.findall(r'^[a-zA-Z0-9.-]*', raw_list, re.M)
+
+    header = dedent('''\n\n\
+        Similar Projects:
+        -----------------
+        *not affiliated with oopen or it's author*
+
+        ''')
+
+    template = dedent('''\
+        `{0} <http://pypi.python.org/{0}/>`_
+          {1}
+
+        ''')
+
+    #build the result into rst
+    result = ''
+    for project in zip(moniker, description):
+        result += template.format(project[0], project[1])
+
+    return header + result + "--------\n\n"

@@ -3,9 +3,17 @@ import oopen
 import os
 import sys
 
+
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     sys.exit()
+
+
+try:
+    from fabfile import related_projects
+    related = related_projects()
+except:
+    related = ''
 
 
 setup(name='oopen',
@@ -14,6 +22,7 @@ setup(name='oopen',
       long_description=open('INFO.rst', 'r').read() + "\n\n" +
       open('INSTALL.rst', 'r').read() + "\n\n" +
       open('HISTORY.rst', 'r').read() + "\n\n" +
+      related +
       open('LICENSE.rst', 'r').read(),
       keywords='file path oo',
       author='Andrew Hekman',
