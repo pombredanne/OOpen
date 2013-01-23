@@ -15,7 +15,7 @@ EDITOR = 'subl'
 
 
 def ensure_in_sync():
-    if local('git describe --dirty') == oopen.__version__:
+    if local('git describe --dirty').split("\n")[-1] == oopen.__version__:
         return True
 
 
