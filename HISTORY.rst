@@ -5,6 +5,13 @@
 History
 -------
 
+0.2.0 (2013-01-23)
+++++++++++++++++++
+
+- Added preliminary support for the extension property
+- Added related projects to README
+
+
 0.1.3 (2013-01-20)
 ++++++++++++++++++
 
