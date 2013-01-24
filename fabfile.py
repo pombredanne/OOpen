@@ -14,8 +14,12 @@ local = partial(local, capture=True)
 EDITOR = 'subl'
 
 
+def get_file_version():
+    return re.search(r"^__version.*?\'(.*)\'", open('oopen/__init__.py').read(), re.M).groups()[0]
+
+
 def ensure_in_sync():
-    if local('git describe --dirty').split("\n")[-1] == oopen.__version__:
+    if local('git describe --dirty').split("\n")[-1] == get_file_version():
         return True
 
 
@@ -84,7 +88,14 @@ def clean():
 
 @task
 def readme():
-    local('cat INFO.rst INSTALL.rst HISTORY.rst LICENSE.rst > README.rst')
+
+    sources_text = []
+    sources = """INFO.rst INSTALL.rst HISTORY.rst LICENSE.rst""".split()
+    for file_ in sources:
+        sources_text.append(open(file_, 'r').read())
+    # -1 to convert 1 to 0 index
+    sources_text.insert(len(sources_text) - 1, related_projects())
+    open('README.rst', 'w').writelines(sources_text)
 
 
 @task
@@ -115,7 +126,8 @@ def new_release():
 
     ans = prompt('Do you want to increment the version?', default='no', validate=r'(yes|no)')
     if ans == 'yes':
-        version = update_version()
+        update_version()
+        version = get_file_version()
         local('git add HISTORY.rst')
         readme()
         local('git add oopen/__init__.py')
@@ -156,7 +168,7 @@ def related_projects():
         ''')
 
     template = dedent('''\
-        `{0} <http://pypi.python.org/{0}/>`_
+        `{0} <http://pypi.python.org/pypi/{0}/>`_
           {1}
 
         ''')
