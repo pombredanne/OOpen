@@ -96,6 +96,11 @@ Uninstall:
 History
 -------
 
+0.2.2 (2013-01-24)
+++++++++++++++++++
+
+- Fixed link formatting in similar projects
+
 0.2.1 (2013-01-23)
 ++++++++++++++++++
 
@@ -133,6 +138,47 @@ History
 
 - Initial Release
 - For development only, needs to be tested.
+
+
+Similar Projects:
+-----------------
+*not affiliated with oopen or it's author*
+
+`Unipath <http://pypi.python.org/pypi/Unipath/>`_
+   - Object-oriented alternative to os/os.path/shutil
+
+`filepath <http://pypi.python.org/pypi/filepath/>`_
+   - Object-oriented filesystem path representation.
+
+`forked-path <http://pypi.python.org/pypi/forked-path/>`_
+   - An object oriented file path module
+
+`fpath <http://pypi.python.org/pypi/fpath/>`_
+   - Filesystem paths as objects
+
+`lilydjwg.Path <http://pypi.python.org/pypi/lilydjwg.Path/>`_
+   - An object that handles path more easily
+
+`path3 <http://pypi.python.org/pypi/path3/>`_
+   - Object for working with files and directories
+
+`pathlib <http://pypi.python.org/pypi/pathlib/>`_
+   - Object-oriented filesystem paths
+
+`pathobject <http://pypi.python.org/pypi/pathobject/>`_
+   - An update of Jason Orendorff's path.py.
+
+`xpathrecord <http://pypi.python.org/pypi/xpathrecord/>`_
+   - XpathRecord: An XML to read-only Python objects library
+
+`z3c.objpath <http://pypi.python.org/pypi/z3c.objpath/>`_
+   - Generate and resolve paths to to objects.
+
+`zope.traversing <http://pypi.python.org/pypi/zope.traversing/>`_
+   - Resolving paths in the object hierarchy
+
+--------
+
 
 License
 -------

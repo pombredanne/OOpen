@@ -5,6 +5,11 @@
 History
 -------
 
+0.2.2 (2013-01-24)
+++++++++++++++++++
+
+- Fixed link formatting in similar projects
+
 0.2.1 (2013-01-23)
 ++++++++++++++++++
 
