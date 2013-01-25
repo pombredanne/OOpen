@@ -23,7 +23,6 @@ def ensure_in_sync():
         return True
 
 
-@task
 def update_version():
     current_version = oopen.__version__
     major, minor, patch = [int(n) for n in current_version.split('.')]
@@ -50,7 +49,7 @@ def update_version():
     changes = local('git log --oneline --no-color {}..HEAD'.format(current_version))
     local(r'''sed -i "~" /^__version/s/\'.*\'/\\\'{}\\\'/ oopen/__init__.py'''.format(version))
 
-    change_log = re.sub(r'^[0-9a-z]*?\ ', '- ', changes)
+    change_log = re.sub(r'^[0-9a-z]*?\ ', '- ', changes, flags=re.M)
     # subprocess.check_output(popenargs, kwargs)
     subproc = subprocess.Popen(['subl', '-n', '-w', '-'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     retdata = subproc.communicate(change_log)[0]
@@ -98,7 +97,6 @@ def readme():
     open('README.rst', 'w').writelines(sources_text)
 
 
-@task
 def publish():
     if not ensure_in_sync():
         print red('Your git tag does not match your version (or working tree)')
@@ -107,7 +105,6 @@ def publish():
     local('python setup.py publish')
 
 
-@task
 def push():
     if not ensure_in_sync():
         print red('Your git tag does not match your version (or working tree)')
