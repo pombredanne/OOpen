@@ -96,6 +96,12 @@ Uninstall:
 History
 -------
 
+0.2.3 (2013-01-24)
+++++++++++++++++++
+
+- using abspath for stat lookup
+- Added multiline support to history generation regex
+
 0.2.2 (2013-01-24)
 ++++++++++++++++++
 
