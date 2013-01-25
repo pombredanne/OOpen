@@ -83,7 +83,7 @@ class OOpen(file):
         os_stat = {}
         os_stat["st_mode"], os_stat["st_ino"], os_stat["st_dev"], os_stat["st_nlink"], \
             os_stat["st_uid"], os_stat["st_gid"], os_stat["st_size"], os_stat["st_atime"], \
-            os_stat["st_mtime"], os_stat["st_ctime"] = os.stat(self.name)
+            os_stat["st_mtime"], os_stat["st_ctime"] = os.stat(self.abspath)
         return os_stat
 
     def __get_hash(self, hash_type):
@@ -160,7 +160,7 @@ class OOpen(file):
 
         def fset(self, value):
             value_epoch = (value - datetime.datetime(1970, 1, 1)).total_seconds()  # 1/1/1970 is the unix epoch
-            os.utime(self.path, (value_epoch, self.my_stat_immediate['st_mtime']))
+            os.utime(self.abspath, (value_epoch, self.my_stat_immediate['st_mtime']))
 
         def fdel(self):
             return False
@@ -175,7 +175,7 @@ class OOpen(file):
 
         def fset(self, value):
             value_epoch = (value - datetime.datetime(1970, 1, 1)).total_seconds()  # 1/1/1970 is the unix epoch
-            os.utime(self.path, (self.my_stat_immediate['st_atime'], value_epoch))
+            os.utime(self.abspath, (self.my_stat_immediate['st_atime'], value_epoch))
 
         def fdel(self):
             return False
@@ -205,6 +205,8 @@ class OOpen(file):
             return os.path.abspath(self.path)
 
         def fset(self, value):
+            if os.path.abspath(value) == os.path.abspath(self.path):
+                return
             if os.path.exists(value):
                 raise OSError
             os.rename(fget(self), os.path.abspath(value))
