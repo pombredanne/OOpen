@@ -9,15 +9,17 @@ The std lib file and path options aren't very pythonic.
 
 I should be able to perform basic tasks directly on the file.
 
-**Status: In development.**
-
 License: MIT
 ++++++++++++
 
-`Semantic Versioning <http://semver.org/>`_
-  I will commit to not breaking the public API within major versions.
+Status:
+  In development. The public API is not formally documented and may change at anytime.
+  Please pin the version you're using to avoid breakage.
 
-**Donations**
+`Semantic Versioning <http://semver.org/>`_
+  I will commit to not breaking the public API within major versions. (Non breaking API starts at 1.0.0)
+
+Donations
   If you would like to support it's author, you may do so via `gittip <https://www.gittip.com/AJHekman/>`_.
   Thanks for your support!
 

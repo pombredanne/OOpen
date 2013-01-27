@@ -19,7 +19,7 @@ class OOpen(file):
         self.is_modified = False
 
     def __move(self, value):
-        "move the file, repopen file handle"
+        "move the file"
         #todo: Check if dir exists, & we have rights
         new = os.path.abspath(value)
         os.rename(self.path, new)
