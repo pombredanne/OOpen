@@ -19,9 +19,9 @@ except:
 setup(name='oopen',
       version=oopen.__version__,
       description="Object-Oriented File and Path manipulation",
-      long_description=open('INFO.rst', 'r').read() + "\n\n" +
-      open('INSTALL.rst', 'r').read() + "\n\n" +
-      open('HISTORY.rst', 'r').read() + "\n\n" +
+      long_description=open('info/INFO.rst', 'r').read() + "\n\n" +
+      open('info/INSTALL.rst', 'r').read() + "\n\n" +
+      open('info/HISTORY.rst', 'r').read() + "\n\n" +
       related +
       open('LICENSE.rst', 'r').read(),
       keywords='file path oo',

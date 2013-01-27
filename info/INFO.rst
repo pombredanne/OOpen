@@ -33,11 +33,11 @@ Retrieve and set the name of a file:
 ++++++++++++++++++++++++++++++++++++
 >>> oofile.name
 'example_file.py'
->>> oofile.path
-'/Users/ajhekman/Projects/oopen/oopen/example_file.py'
 >>> oofile.name = 'test.txt'
+>>> oofile.name
+'test.txt'
 >>> oofile.path
-'/Users/ajhekman/Projects/oopen/oopen/test.txt'  # << note the changed filename
+'/Users/ajhekman/Projects/oopen/oopen/test.txt'
 >>> oofile.location
 '/Users/ajhekman/Projects/oopen/oopen/'
 
